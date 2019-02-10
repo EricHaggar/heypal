@@ -6,7 +6,11 @@ const path = require("path");
 const fs = require("fs");
 const app = express();
 
-const root = `${__dirname}/build`;
+const {PythonShell} = require('python-shell');
+ 
+
+let filePath = path.join(__dirname, "..", "front-end");
+const root = `${filePath}/build`;
 app.use(express.static(root));
 app.use(fallback("index.html", { root }));
 app.use(
@@ -18,18 +22,15 @@ app.use(bodyParser.json());
 
 app.post("/register", async function(req, res) {
   let username = req.body.query;
-  let filePath = path.join(__dirname, "..", "scripts");
-  await fs.writeFile(filePath + "/username.txt", username, function(err) {
+  let saveToFile = await fs.writeFile("username.txt", username, function(err) {
     if (err) {
       return console.log(err);
     }
     console.log("The file was saved!");
   });
-
-  const pythonProcess = spawn("python", ["path/to/script.py"]);
-  pythonProcess.stdout.on("data", data => {
-    // Do something with the data returned from python script
-    console.log(data);
+  PythonShell.run("master.py", null, function (err) {
+    if (err) throw err;
+    console.log('finished');
   });
 });
 
