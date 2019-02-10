@@ -1,0 +1,49 @@
+sad,6
+angry,5
+depressed,10
+kill,10
+mad,6
+bitter,5
+heartbroken,10
+mournful,10
+pessimistic,7
+sorrowful,10
+awful,6
+stressful,6
+bad,3
+wistful,8
+bereaved,7
+alone,7
+cheerless,8
+dejected,4
+despairing,5
+despondent,6
+disconsolate,7
+distressed,7
+doleful,6
+down in dumps,7
+downcast,5
+not,2
+gloomy,6
+glum,6
+grief-stricken,7
+grieved,10
+heartsick,10
+heavyhearted,10
+hurting,10
+in doldrums,9
+in grief,7
+in the dumps,9
+low,4
+low-spirited,6
+lugubrious,9
+morbid,10
+morose,7
+out of sorts,6
+sick at heart,9
+suicide,7
+troubled,8
+weeping,10
+woebegone,10
+hate,10
+disappointed,8

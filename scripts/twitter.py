@@ -16,8 +16,8 @@ def get_tweets(username):
         for tweet in soup.findAll('div', {"class":"content"}):
             tweet_text = tweet.find('p').text
             tweets.append(tweet_text)
-        print(tweets)
+        return tweets
     
     except HTTPError:
-        pass
+        return -1
 
