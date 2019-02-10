@@ -1,15 +1,15 @@
-Guilt,8 
-Fault,8 
-Wrong,5
-Blunder,5
-Error,3
-Responsible,4 
-Blame,5
-Shame,5
-Dishonour,5
-Regret,8
-Sin,6
-Feel bad,8
-Burden,6
-Loss of face,8
-Mistake,5
+guilt,8 
+fault,8 
+wrong,5
+blunder,5
+error,3
+responsible,4 
+blame,5
+shame,5
+dishonour,5
+regret,8
+sin,6
+feel bad,8
+burden,6
+loss of face,8
+mistake,5

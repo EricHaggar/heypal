@@ -1,27 +1,27 @@
-Tired,10
-Distressed,3
-Drained,6
-Exasperated,8
-Fatigued,10
-Irritated,4
-Overworked,8
-Sleepy,5
-Stale,5
-Beat,5
-Collapsing,5
+tired,10
+distressed,3
+drained,6
+exasperated,8
+fatigued,10
+irritated,4
+overworked,8
+sleepy,5
+stale,5
+beat,5
+collapsing,5
 collapse,5
-Faint,8
-Finished,3
-Overtaxed,4
-Spent,4
-Wasted,5
-Worn,4
-Broken-down,10
-Burned out,10
-Done for,8
-Fed up,6
-Run-down,4
-Worn out,8
-Depleted,6
-Dead,8
-Wiped-out,8
+faint,8
+finished,3
+overtaxed,4
+spent,4
+wasted,5
+worn,4
+broken-down,10
+burned out,10
+done for,8
+fed up,6
+run-down,4
+worn out,8
+depleted,6
+dead,8
+wiped-out,8
