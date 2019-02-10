@@ -1,0 +1,6 @@
+him,10
+his,10
+her,10
+hers,10
+they,10
+theirs,10

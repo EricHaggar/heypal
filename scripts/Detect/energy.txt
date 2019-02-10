@@ -1,0 +1,27 @@
+Tired,10
+Distressed,3
+Drained,6
+Exasperated,8
+Fatigued,10
+Irritated,4
+Overworked,8
+Sleepy,5
+Stale,5
+Beat,5
+Collapsing,5
+collapse,5
+Faint,8
+Finished,3
+Overtaxed,4
+Spent,4
+Wasted,5
+Worn,4
+Broken-down,10
+Burned out,10
+Done for,8
+Fed up,6
+Run-down,4
+Worn out,8
+Depleted,6
+Dead,8
+Wiped-out,8
