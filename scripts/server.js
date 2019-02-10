@@ -16,7 +16,11 @@ var config = {
 
 firebase.initializeApp(config);
 
-const root = `${__dirname}/build`;
+const {PythonShell} = require('python-shell');
+ 
+
+let filePath = path.join(__dirname, "..", "front-end");
+const root = `${filePath}/build`;
 app.use(express.static(root));
 app.use(fallback("index.html", { root }));
 app.use(
@@ -28,19 +32,25 @@ app.use(bodyParser.json());
 
 app.post("/register", async function(req, res) {
   let username = req.body.query;
-  let filePath = path.join(__dirname, "..", "scripts");
-  await fs.writeFile(filePath + "/username.txt", username, function(err) {
+  let saveToFile = await fs.writeFile("username.txt", username, function(err) {
     if (err) {
       return console.log(err);
     }
     console.log("The file was saved!");
   });
+<<<<<<< HEAD:front-end/server.js
   var query = firebase
     .database()
     .ref()
     .child(username);
   res.setHeader("Content-Type", "application/json");
   query.on("value", snap => res.send(JSON.stringify(snap.val())));
+=======
+  PythonShell.run("master.py", null, function (err) {
+    if (err) throw err;
+    console.log('finished');
+  });
+>>>>>>> 25020dd33fa90919cb2ad3373da8c9bbb5bb9f77:scripts/server.js
 });
 
 app.listen(3000, "127.0.0.1", () => {

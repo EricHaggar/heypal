@@ -5,10 +5,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
-    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-history-api-fallback": "^2.2.1",
-    "firebase": "^5.8.2",
     "fs": "^0.0.1-security",
     "mdbreact": "^4.10.0",
     "nodemon": "^1.18.10",
