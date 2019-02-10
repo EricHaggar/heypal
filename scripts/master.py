@@ -40,11 +40,9 @@ def masterScript():
 
         category_scores = keyword_detection.calculate_scores(tweets)
 
-        d = {'sScores': sentiment_score, 'cScores': category_scores}
-        print(d)
-
         database.child(username).child("sentiment_scores").set(sentiment_scores)
         database.child(username).child("category_scores").set(category_scores)
+    
     sys.stdout.flush()
 
 masterScript()
