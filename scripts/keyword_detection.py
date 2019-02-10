@@ -1,8 +1,6 @@
-
-
-def lossOfEnergy(text):
+def loss_of_energy(text):
     keywords = {}
-    with open("energy.txt") as words:
+    with open("categories/energy.txt") as words:
         for line in words:
             currentLine = line.split(",")
             keywords[str(currentLine[0])] = int(currentLine[1])
@@ -14,11 +12,9 @@ def lossOfEnergy(text):
 
     return score
     
-
-    
-def changeOfInterest(text):
+def change_of_interest(text):
     keywords = {}
-    with open("changeInterest.txt") as words:
+    with open("categories/interestChange.txt") as words:
         for line in words:
             currentLine = line.split(",")
             keywords[str(currentLine[0])] = int(currentLine[1])
@@ -31,9 +27,9 @@ def changeOfInterest(text):
 
     return score
 
-def firstPronouns(text):
+def first_pronouns(text):
     keywords = {}
-    with open("firstPronouns.txt") as words:
+    with open("categories/firstPronouns.txt") as words:
         for line in words:
             currentLine = line.split(",")
             keywords[str(currentLine[0])] = int(currentLine[1])
@@ -51,7 +47,7 @@ def firstPronouns(text):
 
 def guilt(text):
     keywords = {}
-    with open("guilt.txt") as words:
+    with open("categories/guilt.txt") as words:
         for line in words:
             currentLine = line.split(",")
             keywords[str(currentLine[0])] = int(currentLine[1])
@@ -65,9 +61,9 @@ def guilt(text):
     return score
 
 
-def indecisivness(text):
+def indecisiveness(text):
     keywords = {}
-    with open("indecisivness.txt") as words:
+    with open("categories/indecisiveness.txt") as words:
         for line in words:
             currentLine = line.split(",")
             keywords[str(currentLine[0])] = int(currentLine[1])
@@ -79,12 +75,10 @@ def indecisivness(text):
             score += keywords[key]
 
     return score
-
-
 
 def negative(text):
     keywords = {}
-    with open("negative.txt") as words:
+    with open("categories/negative.txt") as words:
         for line in words:
             currentLine = line.split(",")
             keywords[str(currentLine[0])] = int(currentLine[1])
@@ -97,22 +91,22 @@ def negative(text):
 
     return score
 
-    
 
-def detect(tweets):
+def calculate_scores(tweets):
     criterias = {}
     criterias["Energy"] = 0
     criterias["Interest"] = 0
     criterias["Pronouns"] = 0
     criterias["Guilt"] = 0
-    criterias["Indecisivness"] = 0
+    criterias["Indecisiveness"] = 0
     criterias["Negative"] = 0
+
     for tweet in tweets:
-        criterias["Energy"]+= lossOfEnergy(tweet)
-        criterias["Interest"]+= changeOfInterest(tweet)
-        criterias["Pronouns"]+= firstPronouns(tweet)
+        criterias["Energy"]+= loss_of_energy(tweet)
+        criterias["Interest"]+= change_of_interest(tweet)
+        criterias["Pronouns"]+= first_pronouns(tweet)
         criterias["Guilt"]+= guilt(tweet)
-        criterias["Indecisivness"]+= indecisivness(tweet)
+        criterias["Indecisiveness"]+= indecisiveness(tweet)
         criterias["Negative"]+= negative(tweet)
     
     result = {}
@@ -121,22 +115,7 @@ def detect(tweets):
     result["Interest"] = (criterias["Interest"]/total)*100
     result["Pronouns"] = (criterias["Pronouns"]/total)*100
     result["Guilt"] = (criterias["Guilt"]/total)*100
-    result["Indecisivness"] = (criterias["Indecisivness"]/total)*100
+    result["Indecisiveness"] = (criterias["Indecisiveness"]/total)*100
     result["Negative"] = (criterias["Negative"]/total)*100
 
-
     return result
-
-
-
-
-tweets = ["This is a test", 'I feel tired and sad this is a burden or doubt change of heart i', "Lets see the total"]
-
-print(detect(tweets))
-   
-
-
-
-
-
-
