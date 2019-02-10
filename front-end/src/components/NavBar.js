@@ -6,9 +6,10 @@ import {
   MDBNavbarToggler,
   MDBCollapse,
   MDBNavItem,
-  MDBNavLink,
-  MDBIcon
+  MDBNavLink
 } from "mdbreact";
+
+import { NavLink, Link } from "react-router-dom";
 
 class NavBar extends Component {
   state = {
@@ -39,7 +40,7 @@ class NavBar extends Component {
         <MDBCollapse isOpen={this.state.collapse} navbar>
           <MDBNavbarNav left>
             <MDBNavItem active>
-              <MDBNavLink to="#">Home</MDBNavLink>
+              <MDBNavLink to="/">Home</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <a
@@ -60,6 +61,9 @@ class NavBar extends Component {
               >
                 Github Repo
               </a>
+            </MDBNavItem>
+            <MDBNavItem>
+              <Link to="results">Results</Link>
             </MDBNavItem>
           </MDBNavbarNav>
         </MDBCollapse>

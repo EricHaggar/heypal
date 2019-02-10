@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import DashboardPage from "./pages/HomePage";
-import DetailsPage from "./pages/DetailsPage";
+import HomePage from "./pages/HomePage";
+import ResultsPage from "./pages/ResultsPage";
 
 class Routes extends React.Component {
   render() {
