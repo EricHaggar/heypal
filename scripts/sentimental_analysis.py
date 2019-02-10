@@ -2,7 +2,7 @@ from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
 
-def get_analysis(text):
+def get_scores(text):
     client = language.LanguageServiceClient()
 
     document = types.Document(
@@ -12,5 +12,5 @@ def get_analysis(text):
     # Detects the sentiment of the text
     sentiment = client.analyze_sentiment(document=document).document_sentiment
 
-    return sentiment.score, sentiment.magnitude
+    return sentiment.score
     
