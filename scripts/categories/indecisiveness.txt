@@ -8,10 +8,12 @@ irresolution,10
 mistrust,6
 reluctance,9
 uncertainty,10
+uncertainties,10
 indecisiveness,10
 irresolution,10
 vacillation,9
 confuse,8
+confusion,8
 second thoughts,10
 second guessing,10
 not sure,8

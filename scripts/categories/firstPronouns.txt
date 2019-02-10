@@ -1,6 +1,7 @@
 me,10
 myself,10
 i,10
+i'm,10
 personally,10
 individually,10
 my,10
