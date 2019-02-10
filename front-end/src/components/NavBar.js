@@ -9,7 +9,7 @@ import {
   MDBNavLink
 } from "mdbreact";
 
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class NavBar extends Component {
   state = {

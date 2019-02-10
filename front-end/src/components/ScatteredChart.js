@@ -18,42 +18,26 @@ const data01 = [
   { x: 70, y: 150 },
   { x: 100, y: 250 }
 ];
-const data02 = [
-  { x: 30, y: 20 },
-  { x: 50, y: 180 },
-  { x: 75, y: 240 },
-  { x: 100, y: 100 },
-  { x: 120, y: 190 }
-];
 
 const ScatteredChart = () => {
   return (
-    <ScatterChart
-      width={600}
-      height={400}
-      margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-    >
-      <CartesianGrid />
-      <XAxis type="number" dataKey={"x"} name="stature" unit="cm" />
-      <YAxis type="number" dataKey={"y"} name="weight" unit="kg" />
-      <ZAxis range={[100]} />
-      <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-      <Legend />
-      <Scatter
-        name="A school"
-        data={data01}
-        fill="#8884d8"
-        line
-        shape="cross"
-      />
-      <Scatter
-        name="B school"
-        data={data02}
-        fill="#82ca9d"
-        line
-        shape="diamond"
-      />
-    </ScatterChart>
+    <div>
+      <h2>Sentimental Analysis</h2>
+
+      <ScatterChart
+        width={600}
+        height={400}
+        margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+      >
+        <CartesianGrid />
+        <XAxis type="number" dataKey={"x"} name="data point" unit="" />
+        <YAxis type="number" dataKey={"y"} name="emotion" unit="" />
+        <ZAxis range={[100]} />
+        <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+        <Legend />
+        <Scatter name="" data={data01} fill="#8884d8" line shape="cross" />
+      </ScatterChart>
+    </div>
   );
 };
 
