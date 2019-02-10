@@ -9,6 +9,7 @@ mournful,10
 pessimistic,7
 sorrowful,10
 awful,6
+die,10
 stressful,6
 bad,3
 wistful,8
