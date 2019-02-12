@@ -9,7 +9,7 @@ def generate_plots(sentiment_scores, category_scores):
 
     for i in range(len(sentiment_scores)):
         x_axis.append(count)
-        count += i
+        count += 1
 
     plot.plot(x_axis,y_axis)
 
