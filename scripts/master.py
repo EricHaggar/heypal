@@ -1,4 +1,5 @@
-import twitter
+import twitter_scraper
+import twitter_api
 import sentimental_analysis
 import keyword_detection
 import pyrebase
@@ -12,20 +13,22 @@ file = open("username.txt", "r")
 username = file.readline()
 
 configuration = {
-
     "apiKey": config.api_key,
     "authDomain": config.auth_domain,
     "databaseURL": config.database_URL,
     "projectId": config.project_id,
     "storageBucket": config.storage_bucket,
-
     }
 
 firebase = pyrebase.initialize_app(configuration)
 database = firebase.database()
 
-# gets user tweets
-tweets = twitter.get_tweets(username)
+# gets user tweets using webscraping (beautiful soup)
+# tweets = twitter_scraper.get_tweets(username)
+
+# gets user tweets using TwitterAPI
+number_of_tweets = 30
+tweets = twitter_api.get_tweets(username, number_of_tweets)
 
 if (tweets == -1):
     print("The user does not exist!")
@@ -43,7 +46,4 @@ database.child(username).child("sentiment_scores").set(sentiment_scores)
 database.child(username).child("category_scores").set(category_scores)
 
 plot.generate_plots(sentiment_scores, category_scores)
-
-
-
-    
+  

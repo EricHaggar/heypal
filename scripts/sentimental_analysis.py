@@ -2,6 +2,7 @@ from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
 
+
 def get_scores(text):
     client = language.LanguageServiceClient()
 

@@ -38,13 +38,13 @@ def generate_plots(sentiment_scores, category_scores):
     index = np.arange(n_groups)
 
 
-    rects1 = ax.bar(index, scores, width=0.5)
+    ax.bar(index, scores, width=0.5)
     for i, v in enumerate(scores):
         ax.text(i-0.225, v + 0.5, "%.2f"%v, fontweight='bold')
 
     ax.set_xlabel('Group')
     ax.set_ylabel('Percentage (%)')
-    ax.set_title('Emotional Analyses')
+    ax.set_title('Emotional Analysis')
     ax.set_xticks(index)
     ax.set_xticklabels(category_scores.keys())
     fig.tight_layout()
