@@ -44,7 +44,7 @@ def generate_plots(sentiment_scores, category_scores):
 
     ax.set_xlabel('Group')
     ax.set_ylabel('Percentage (%)')
-    ax.set_title('Emotional Analyses')
+    ax.set_title('Emotional Analysis')
     ax.set_xticks(index)
     ax.set_xticklabels(category_scores.keys())
     fig.tight_layout()
