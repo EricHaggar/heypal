@@ -1,6 +1,5 @@
-from TwitterAPI import TwitterAPI
-from config import twitter_consumer_key, twitter_consumer_secret, twitter_access_token, twitter_access_secret
-import twitter
+import twitter_scraper
+import twitter_api
 import sentimental_analysis
 import keyword_detection
 import pyrebase
@@ -25,7 +24,11 @@ firebase = pyrebase.initialize_app(configuration)
 database = firebase.database()
 
 # gets user tweets using webscraping (beautiful soup)
-tweets = twitter.get_tweets(username)
+# tweets = twitter_scraper.get_tweets(username)
+
+# gets user tweets using TwitterAPI
+number_of_tweets = 30
+tweets = twitter_api.get_tweets(username, number_of_tweets)
 
 if (tweets == -1):
     print("The user does not exist!")
