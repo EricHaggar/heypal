@@ -1,0 +1,5 @@
+*/config.json
+*/config.py
+*/node_modules
+*/__pychache__
+/username.txt
