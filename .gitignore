@@ -4,3 +4,6 @@
 */__pycache__
 *.txt
 node_modules
+root/dist
+root/*.log
+root/yarn.lock
