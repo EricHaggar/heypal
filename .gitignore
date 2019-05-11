@@ -7,3 +7,5 @@ node_modules
 root/dist
 root/*.log
 root/yarn.lock
+.dist
+.vscode
