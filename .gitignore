@@ -2,4 +2,4 @@
 */config.py
 */node_modules
 */__pycache__
-scripts/username.txt
+*.txt
