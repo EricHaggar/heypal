@@ -8,10 +8,11 @@
     "react-scripts": "3.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "webpack": "webpack",
+    "start": "npm run webpack && nodemon --exec babel-node -- bin/www"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +28,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.2"
   }
 }
