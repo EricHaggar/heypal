@@ -9,3 +9,5 @@ root/*.log
 root/yarn.lock
 .dist
 .vscode
+.idea
+*/*.pyc
