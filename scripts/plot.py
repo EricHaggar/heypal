@@ -5,7 +5,7 @@ from matplotlib.ticker import MaxNLocator
 from collections import namedtuple
 
 
-def generate_plots(sentiment_scores, category_scores):
+def generate_plots(sentiment_scores):
    
     x_axis = list()
     y_axis = sentiment_scores
@@ -28,7 +28,7 @@ def generate_plots(sentiment_scores, category_scores):
     plot.axhline(y = 1.0, linestyle  = '--', color='green')
     plot.show()
 
-    n_groups = 6
+""" n_groups = 6
 
     scores = category_scores.values()
     
@@ -49,9 +49,4 @@ def generate_plots(sentiment_scores, category_scores):
     ax.set_xticklabels(category_scores.keys())
     fig.tight_layout()
     plt.show()
-   
-
-
-
-
-
+ """
