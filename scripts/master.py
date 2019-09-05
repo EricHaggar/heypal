@@ -7,44 +7,47 @@ import config
 import plot
 import sys
 
-sentiment_scores = list()
-# category_scores = list()
+def main():
 
-# Get username 
-username = sys.argv[1]
 
-configuration = {
-    "apiKey": config.api_key,
-    "authDomain": config.auth_domain,
-    "databaseURL": config.database_URL,
-    "projectId": config.project_id,
-    "storageBucket": config.storage_bucket,
-    }
+    sentiment_scores = list()
+    # category_scores = list()
 
-firebase = pyrebase.initialize_app(configuration)
-database = firebase.database()
+    # Get username 
+    username = sys.argv[1]
 
-# gets user tweets using webscraping (beautiful soup)
-# tweets = twitter_scraper.get_tweets(username)
+    configuration = {
+        "apiKey": config.api_key,
+        "authDomain": config.auth_domain,
+        "databaseURL": config.database_URL,
+        "projectId": config.project_id,
+        "storageBucket": config.storage_bucket,
+        }
 
-# gets user tweets using TwitterAPI
-number_of_tweets = 30
-tweets = twitter_api.get_tweets(username, number_of_tweets)
+    firebase = pyrebase.initialize_app(configuration)
+    database = firebase.database()
 
-if (tweets == -1):
-    print("The user does not exist!")
-else:
-    database.child(username).child("sentiment_scores").remove()
-    # database.child(username).child("category_scores").remove()
+    # gets user tweets using webscraping (beautiful soup)
+    # tweets = twitter_scraper.get_tweets(username)
 
-for tweet in tweets:
-    sentiment_score = sentimental_analysis.get_scores(tweet)
-    sentiment_scores.append(sentiment_score)
+    # gets user tweets using TwitterAPI
+    number_of_tweets = 30
+    tweets = twitter_api.get_tweets(username, number_of_tweets)
 
-# category_scores = keyword_detection.calculate_scores(tweets)
+    if (tweets == -1):
+        print("The user does not exist!")
+    else:
+        database.child(username).child("sentiment_scores").remove()
 
-database.child(username).child("sentiment_scores").set(sentiment_scores)
-# database.child(username).child("category_scores").set(category_scores)
+    for tweet in tweets:
+        sentiment_score = sentimental_analysis.get_scores(tweet)
+        sentiment_scores.append(sentiment_score)
 
-plot.generate_plots(sentiment_scores)
-  
+    print(sentiment_scores)
+
+    database.child(username).child("sentiment_scores").set(sentiment_scores)
+
+    # plot.generate_plots(sentiment_scores)
+    
+if __name__ == "__main__":
+    main()
