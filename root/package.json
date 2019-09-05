@@ -20,6 +20,7 @@
     "python-shell": "^1.0.8",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "sentiment": "^5.0.2",
     "twitter": "^1.7.1"
   },
   "devDependencies": {
