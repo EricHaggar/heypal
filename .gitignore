@@ -1,6 +1,6 @@
 */config.json
 */config.py
-*/config.js
+root/src/server/config.js
 */node_modules
 */__pycache__
 *.txt
