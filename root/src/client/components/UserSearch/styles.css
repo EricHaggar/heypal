@@ -1,0 +1,15 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-container{
+    align-items: center;
+}
+
+.search-bar{
+    margin: 20px;
+    min-height: 100vh;
+}
