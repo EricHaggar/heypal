@@ -9,7 +9,7 @@ var sentiment = new Sentiment();
 
 
 
-router.get('/getSentimentScores', (req, res) => {
+router.post('/getSentimentScores', (req, res) => {
    twitter.get('statuses/user_timeline.json', {screen_name: req.body.username, count: 30, lang: 'en'}, async function(error, tweets, response) {
       if (!error) {
          tweetsText = await tweets.map(tweet => {return tweet.text})
@@ -19,7 +19,7 @@ router.get('/getSentimentScores', (req, res) => {
             var result = await sentiment.analyze(tweetsText[i], {language: 'en'});
             scores.push(result.comparative)
          }
-         res.send(scores)
+         res.send({"scores": scores})
       } else {
           res.send(error)
       }
