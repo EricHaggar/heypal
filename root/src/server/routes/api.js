@@ -17,7 +17,7 @@ router.post('/getSentimentScores', (req, res) => {
          var scores = []
          for (var i = 0; i < tweetsText.length; i++) {
             var result = await sentiment.analyze(tweetsText[i], {language: 'en'});
-            scores.push(result.comparative)
+            scores.push(result.score)
          }
          res.send({"scores": scores})
       } else {
