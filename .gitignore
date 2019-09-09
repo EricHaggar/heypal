@@ -12,3 +12,4 @@ root/yarn.lock
 .vscode
 .idea
 */*.pyc
+/scripts
