@@ -14,10 +14,11 @@ class UserSearch extends React.Component {
       scores: [],
       validAccount: false,
       errors: false,
+      loading: false
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleInputError = this.handleInputError.bind(this);
-    this.displayErrorMessage = this.displayErrorMessage.bind(this);
+    this.displayMessage = this.displayMessage.bind(this);
   }
 
   handleSearch = input => {
@@ -27,19 +28,22 @@ class UserSearch extends React.Component {
       axios.post('api/getSentimentScores', {
         username: input,
       })
-        .then(res => this.setState({ username: input, scores: res.data.scores, validAccount: true, errors: false }))
+        .then(res => this.setState({ username: input, scores: res.data.scores, validAccount: true, errors: false, loading: true }, () => console.log(`${this.state.username} ${this.state.scores}`)))
         .catch(err => this.handleInputError(err))
     }
   }
 
   handleInputError = error => {
     console.log(error)
-    this.setState({ username: "", scores: [], validAccount: false, errors: true })
+    this.setState({ username: "", scores: [], validAccount: false, errors: true, loading: false })
   }
 
-  displayErrorMessage = () => {
+  displayMessage = () => {
     if (this.state.errors || this.state.scores == undefined) {
       return <div className='error-message'><p>Invalid username! Please enter a valid username.</p></div>
+    } else if (this.state.validAccount && this.state.scores < 10) {
+      return <div className='error-message'><p>We're not receiving tweets for {this.state.username} at the moment.</p>
+             </div>
     } else {
       return ""
     }
@@ -47,6 +51,7 @@ class UserSearch extends React.Component {
 
 
   render() {
+    const minNumberOfTweets = 10
     return (
       <div className='main-container'>
         <div className='header'>
@@ -62,7 +67,7 @@ class UserSearch extends React.Component {
               onSearch={this.handleSearch}
             />
           </div>
-          {this.state.validAccount && this.state.scores != undefined ? <LineChart username={this.state.username} scores={this.state.scores} /> : this.displayErrorMessage()}
+          {this.state.validAccount && (this.state.scores != undefined) && (this.state.scores.length >= minNumberOfTweets) ? <LineChart username={this.state.username} scores={this.state.scores} /> : this.displayMessage()}
         </div>
       </div>
     )

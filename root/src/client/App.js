@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import UserSearch from "./components/UserSearch";
-import LineChart from "./components/LineChart"
 import './app.css';
 
 class App extends Component {
