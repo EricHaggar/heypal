@@ -1,8 +1,8 @@
 import React from "react";
-import { Input } from 'antd';
+import { Input, Layout } from 'antd';
 import './styles.css';
 import axios from 'axios';
-import { Line } from 'react-chartjs-2';
+import LineChart from '../LineChart/index'
 const { Search } = Input;
 
 
@@ -11,51 +11,49 @@ class UserSearch extends React.Component {
     super(props);
     this.state = {
       username: "",
-      scores: []
+      scores: [],
+      validAccount: false,
+      errors: false,
     };
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleInputError = this.handleInputError.bind(this);
+    this.displayErrorMessage = this.displayErrorMessage.bind(this);
   }
 
   handleSearch = input => {
-    axios.post('api/getSentimentScores', {
-      username: input,
-    })
-      .then(res => this.setState({ username: input, scores: res.data.scores }, () => { console.log(this.state.username + ' ' + this.state.scores) }))
-      .catch(err => alert(err))
+    if (input === null || input.match(/^ *$/) !== null) {
+      this.handleInputError("Invalid Username!")
+    } else {
+      axios.post('api/getSentimentScores', {
+        username: input,
+      })
+        .then(res => this.setState({ username: input, scores: res.data.scores, validAccount: true, errors: false }))
+        .catch(err => this.handleInputError(err))
+    }
   }
 
-  render() {
-    let data = {
-      datasets: [
-        {
-          label: 'Scores',
-          fill: true,
-          lineTension: 0.1,
-          backgroundColor: 'rgba(75,192,192,0.4)',
-          borderColor: 'rgba(75,192,192,1)',
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: 'rgba(75,192,192,1)',
-          pointBackgroundColor: '#fff',
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-          pointHoverBorderColor: 'rgba(220,220,220,1)',
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: this.state.scores
-        }
-      ]
+  handleInputError = error => {
+    console.log(error)
+    this.setState({ username: "", scores: [], validAccount: false, errors: true })
+  }
+
+  displayErrorMessage = () => {
+    if (this.state.errors || this.state.scores == undefined) {
+      return <div className='error-message'><p>Invalid username! Please enter a valid username.</p></div>
+    } else {
+      return ""
     }
-    var ScoresChart = () => <Line data={data}/>
-    
+  }
+
+
+  render() {
     return (
       <div className='main-container'>
-        <div className='text-search-container'>
-          <h1>Twitter Sentiment Analysis</h1>
+        <div className='header'>
+          <p>HeyPal</p>
+        </div>
+        <div className='search-graph-container'>
+          <h2>Twitter Sentiment Analysis Tool</h2>
           <div className='search-bar'>
             <Search
               placeholder="Enter a Twitter username"
@@ -64,9 +62,7 @@ class UserSearch extends React.Component {
               onSearch={this.handleSearch}
             />
           </div>
-        </div>
-        <div className='graph'>
-            {(this.state.scores.length != 0 && this.state.username.trim() != "") ? < ScoresChart/> : null }
+          {this.state.validAccount && this.state.scores != undefined ? <LineChart username={this.state.username} scores={this.state.scores} /> : this.displayErrorMessage()}
         </div>
       </div>
     )
