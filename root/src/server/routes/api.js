@@ -9,10 +9,14 @@ var sentiment = new Sentiment();
 
 
 router.post('/getSentimentScores', async (req, res) => {
-   let tweets = await twitter.get('statuses/user_timeline.json', { screen_name: req.body.username, count: 20, lang: 'en' })
-   let tweetsText = await getTweetsText(tweets)
-   let scores = await getSentimentScores(tweetsText)
-   res.send({ "scores": scores })
+   try {
+      let tweets = await twitter.get('statuses/user_timeline.json', { screen_name: req.body.username, count: 20, lang: 'en' })
+      let tweetsText = await getTweetsText(tweets)
+      let scores = await getSentimentScores(tweetsText)
+      res.send({ "scores": scores })
+   } catch (error) {
+      res.send({ "error": error })
+   }
 });
 
 async function getTweetsText(tweets) {

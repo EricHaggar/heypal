@@ -1,12 +1,12 @@
 import React from "react";
-import { Input, Layout } from 'antd';
-import './styles.css';
+import { Input } from 'antd';
+import './Home.css';
 import axios from 'axios';
-import LineChart from '../LineChart/index'
+import Graph from '../../components/Graph';
 const { Search } = Input;
 
 
-class UserSearch extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +43,7 @@ class UserSearch extends React.Component {
       return <div className='error-message'><p>Invalid username! Please enter a valid username.</p></div>
     } else if (this.state.validAccount && this.state.scores < 10) {
       return <div className='error-message'><p>We're not receiving tweets for {this.state.username} at the moment.</p>
-             </div>
+      </div>
     } else {
       return ""
     }
@@ -57,23 +57,26 @@ class UserSearch extends React.Component {
         <div className='header'>
           <p>HeyPal</p>
         </div>
-        <div className='search-graph-container'>
-          <h2>Twitter Sentiment Analysis Tool</h2>
-          <div className='search-bar'>
-            <Search
-              placeholder="Enter a Twitter username"
-              enterButton="Search"
-              size="large"
-              onSearch={this.handleSearch}
-            />
+        <div className='search-card'>
+          <div className='search-graph-container'>
+            <h2>Twitter Sentiment Analysis Tool</h2>
+            <div className='search-bar'>
+              <Search
+                placeholder="Enter a Twitter username"
+                enterButton="Search"
+                size="large"
+                onSearch={this.handleSearch}
+              />
+            </div>
           </div>
-          {this.state.validAccount && (this.state.scores != undefined) && (this.state.scores.length >= minNumberOfTweets) ? <LineChart username={this.state.username} scores={this.state.scores} /> : this.displayMessage()}
-        </div>
-      </div>
+          {this.state.errors || this.state.score == undefined || this.state.scores.length < minNumberOfTweets ? this.displayMessage() : null}
+        </div >
+        {this.state.validAccount && (this.state.scores != undefined) && (this.state.scores.length >= minNumberOfTweets) ? <Graph username={this.state.username} scores={this.state.scores} /> : null}
+      </div >
+
     )
   }
 }
 
-export default UserSearch
-
+export default Home;
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import './styles.css';
+import './Graph.css';
 
-class LineChart extends React.Component {
+class Graph extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -24,12 +24,12 @@ class LineChart extends React.Component {
                     pointBorderColor: '#1890ff',
                     pointBackgroundColor: '#fff',
                     pointBorderWidth: 1,
-                    pointHoverRadius: 5,
+                    pointHoverRadius: 0,
                     pointHoverBackgroundColor: '#1890ff',
                     pointHoverBorderColor: '#1890ff',
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
-                    pointHitRadius: 10,
+                    pointHitRadius: 0,
                     data: this.props.scores
                 }
             ]
@@ -58,14 +58,16 @@ class LineChart extends React.Component {
         };
 
         return (
-            <div className='graph'>
-                <Line data={data} options={options} height={500} />
+            <div className='graph-card'>
+                <div className='graph'>
+                    <Line data={data} options={options} height={500} />
+                </div>
             </div>
         );
     }
 }
 
-export default LineChart;
+export default Graph;
 
 
 
