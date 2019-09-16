@@ -1,79 +1,42 @@
 import React from "react";
-import { Input } from 'antd';
 import './Home.css';
-import axios from 'axios';
-import Graph from '../../components/Graph';
-const { Search } = Input;
+import UserSearch from '../../components/UserSearch';
 
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: "",
-      scores: [],
-      validAccount: false,
-      errors: false,
-      loading: false
-    };
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleInputError = this.handleInputError.bind(this);
-    this.displayMessage = this.displayMessage.bind(this);
   }
-
-  handleSearch = input => {
-    if (input === null || input.match(/^ *$/) !== null) {
-      this.handleInputError("Invalid Username!")
-    } else {
-      axios.post('api/getSentimentScores', {
-        username: input,
-      })
-        .then(res => this.setState({ username: input, scores: res.data.scores, validAccount: true, errors: false, loading: true }, () => console.log(`${this.state.username} ${this.state.scores}`)))
-        .catch(err => this.handleInputError(err))
-    }
-  }
-
-  handleInputError = error => {
-    console.log(error)
-    this.setState({ username: "", scores: [], validAccount: false, errors: true, loading: false })
-  }
-
-  displayMessage = () => {
-    if (this.state.errors || this.state.scores == undefined) {
-      return <div className='error-message'><p>Invalid username! Please enter a valid username.</p></div>
-    } else if (this.state.validAccount && this.state.scores < 10) {
-      return <div className='error-message'><p>We're not receiving tweets for {this.state.username} at the moment.</p>
-      </div>
-    } else {
-      return ""
-    }
-  }
-
 
   render() {
-    const minNumberOfTweets = 10
     return (
       <div className='main-container'>
-        <div className='header'>
-          <p>HeyPal</p>
+        <div className='header-container'>
+          <div className='header-text'>
+            HeyPal
+          </div>
         </div>
-        <div className='search-card'>
-          <div className='search-graph-container'>
-            <h2>Twitter Sentiment Analysis Tool</h2>
-            <div className='search-bar'>
-              <Search
-                placeholder="Enter a Twitter username"
-                enterButton="Search"
-                size="large"
-                onSearch={this.handleSearch}
-              />
+        <div className='body'>
+          <div className='intro-container'>
+            <div className='intro-text'>
+              <b>HeyPal</b> is a natural language processing tool which analyzes <b>Twitter</b> posts using sentiment
+              analysis to detect signs of depression. This tool was designed as a prototype to provide
+              analytics to social platforms in order to notify close friends, family and followers to check-up
+              on the user.<br /><br />
+              <h4>Technology Stack: <img src="https://hackernoon.com/hn-images/1*-NOQtyJAGQ1RNC3iVt_thA.png" alt="image" height="45" /></h4> 
+              <h4>Github Repo: <a href="https://github.com/EricHaggar/HeyPal" target="_blank"><img src="https://image.flaticon.com/icons/svg/25/25231.svg" height="45" alt="image"/></a></h4>
             </div>
           </div>
-          {this.state.errors || this.state.score == undefined || this.state.scores.length < minNumberOfTweets ? this.displayMessage() : null}
-        </div >
-        {this.state.validAccount && (this.state.scores != undefined) && (this.state.scores.length >= minNumberOfTweets) ? <Graph username={this.state.username} scores={this.state.scores} /> : null}
+          <div className='search-graph-container'>
+            <div className='search-graph-text'>
+              <h4>Twitter Sentiment Analysis Tool</h4>
+            </div>
+            <div className='search-graph'>
+              < UserSearch />
+            </div>
+          </div >
+        </div>
       </div >
-
     )
   }
 }

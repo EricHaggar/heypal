@@ -51,18 +51,15 @@ class Graph extends React.Component {
             title: {
                 display: true,
                 fontSize: 15,
-                text: `${this.props.username}'s Sentiment Scores`
+                text: `Sentiment Scores for ${this.props.username}`
             },
-            responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
         };
 
         return (
-            <div className='graph-card'>
                 <div className='graph'>
-                    <Line data={data} options={options} height={500} />
+                    <Line data={data} options={options}/>
                 </div>
-            </div>
         );
     }
 }
