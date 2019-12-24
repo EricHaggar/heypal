@@ -38,7 +38,7 @@ class UserSearch extends React.Component {
     }
 
     displayMessage = () => {
-        if (this.state.errors || this.state.scores == undefined) {
+        if (!this.state.validAccount || this.state.scores == undefined) {
             return <div className='error-message'><p>Invalid username! Please enter a valid username.</p></div>
         } else if (this.state.validAccount && this.state.scores < 10) {
             return <div className='error-message'><p>We're not receiving tweets for {this.state.username} at the moment.</p>
@@ -54,7 +54,7 @@ class UserSearch extends React.Component {
             <div className='search-graph-wrapper'>
             <div className='search-bar'>
                 <Search
-                    placeholder="Enter a Twitter username"
+                    placeholder="Enter a Twitter Username"
                     enterButton="Search"
                     size="large"
                     onSearch={this.handleSearch}
@@ -62,7 +62,7 @@ class UserSearch extends React.Component {
                 {this.state.errors || this.state.score == undefined || this.state.scores.length < minNumberOfTweets ? this.displayMessage() : null}
             </div>
             {this.state.validAccount && (this.state.scores != undefined) && (this.state.scores.length >= minNumberOfTweets) ? 
-            <Graph username={this.state.username} scores={this.state.scores} /> : <Graph username={"Example"} scores={[0.07142857142857142,1,0,0.4,-0.2857142857142857,0,0.125,-0.18181818181818182,0.5625,0.11764705882352941,-0.3333333333333333,0.375,0,0.15384615384615385,-0.11764705882352941,0,-0.15384615384615385,0,0.2631578947368421,0.23076923076923078]} />}
+            <Graph username={this.state.username} scores={this.state.scores} /> : <Graph />}
             </div>
         )
     }
