@@ -1,13 +1,13 @@
 */config.json
 */config.py
-root/src/server/config.js
+src/server/config.js
 */node_modules
 */__pycache__
 *.txt
 node_modules
-root/dist
-root/*.log
-root/yarn.lock
+dist
+*.log
+/yarn.lock
 .dist
 .vscode
 .idea

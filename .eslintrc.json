@@ -6,6 +6,7 @@
     "node": true
   },
   "rules": {
+    "indent": ["error", 3],
     "no-console": "off",
     "comma-dangle": "off",
     "react/jsx-filename-extension": "off"
