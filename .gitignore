@@ -13,3 +13,4 @@ dist
 .idea
 */*.pyc
 /scripts
+**/.DS_Store
