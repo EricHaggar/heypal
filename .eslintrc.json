@@ -6,9 +6,16 @@
     "node": true
   },
   "rules": {
-    "indent": ["error", 3],
+    "max-len": [
+      2,
+      {
+        "code": 120,
+        "tabWidth": 4,
+        "ignoreStrings": true
+      }
+    ],
     "no-console": "off",
     "comma-dangle": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }
