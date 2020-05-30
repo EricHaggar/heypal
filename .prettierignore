@@ -1,0 +1,11 @@
+## file extensions
+*.*
+!*.js
+!*.json
+!*.jsx
+!*.less
+!*.md
+!*.mdx
+
+# Files to be ignored by eslint
+node_modules/**/*

@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.body{
+.body {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -31,12 +31,12 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 30px;
     font-weight: bold;
 }
 
-.intro-container{
+.intro-container {
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -48,7 +48,7 @@
     width: 75%;
 }
 
-.intro-text{
+.intro-text {
     text-align: justify;
     text-justify: inter-word;
     font-size: 20px;
@@ -67,7 +67,7 @@
     width: 75%;
 }
 
-.search-graph-text{
+.search-graph-text {
     text-align: center;
 }
 

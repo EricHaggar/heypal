@@ -24,7 +24,11 @@ async function getTweetsText(tweets) {
 
 router.post('/getSentimentScores', async (req, res) => {
   try {
-    const tweets = await twitter.get('statuses/user_timeline.json', { screen_name: req.body.username, count: 20, lang: 'en' });
+    const tweets = await twitter.get('statuses/user_timeline.json', {
+      screen_name: req.body.username,
+      count: 20,
+      lang: 'en',
+    });
     const tweetsText = await getTweetsText(tweets);
     const scores = await getSentimentScores(tweetsText);
     res.send({ scores });
