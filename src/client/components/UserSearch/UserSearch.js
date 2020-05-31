@@ -1,17 +1,14 @@
-import React from 'react';
-import { Input } from 'antd';
-import './UserSearch.css';
-import axios from 'axios';
-import Graph from '../Graph';
+import React, { useState } from "react";
+import { Input } from "antd";
+import "./UserSearch.css";
+import axios from "axios";
+import Graph from "../Graph";
 
 const { Search } = Input;
 
-class UserSearch extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: 'Example',
-      scores: [
+const UserSearch = () => {
+    const [username, setUsername] = useState("Example");
+    const [scores, setScores] = useState([
         0.07142857142857142,
         1,
         0,
@@ -32,94 +29,79 @@ class UserSearch extends React.Component {
         0,
         0.2631578947368421,
         0.23076923076923078,
-      ],
-      validAccount: true,
-      errors: false,
-    };
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleInputError = this.handleInputError.bind(this);
-    this.displayMessage = this.displayMessage.bind(this);
-  }
+    ]);
 
-    handleSearch = (input) => {
-      if (input === null || input.match(/^ *$/) !== null) {
-        this.handleInputError('Invalid Username!');
-      } else {
-        axios
-          .post('api/getSentimentScores', {
-            username: input,
-          })
-          .then(res => this.setState(
-            {
-              username: input,
-              scores: res.data.scores,
-              validAccount: true,
-              errors: false,
-            },
-            () => console.log(`${this.state.username} ${this.state.scores}`)
-          ))
-          .catch(err => this.handleInputError(err));
-      }
+    const [validAccount, setValidAccount] = useState(true);
+    const [errors, setErrors] = useState(false);
+    const minNumberOfTweets = 10;
+
+    const handleInputError = (error) => {
+        console.log(error);
+
+        setUsername("");
+        setScores([]);
+        setValidAccount(false);
+        setErrors(true);
     };
 
-    handleInputError = (error) => {
-      console.log(error);
-      this.setState({
-        username: '',
-        scores: [],
-        validAccount: false,
-        errors: true,
-      });
+    const handleSearch = (input) => {
+        if (input === null || input.match(/^ *$/) !== null) {
+            handleInputError("Invalid Username!");
+        } else {
+            axios
+                .post("api/getSentimentScores", {
+                    username: input,
+                })
+                .then((res) => {
+                    setUsername(input);
+                    setScores(res.data.scores);
+                    setValidAccount(true);
+                    setErrors(false);
+                })
+                .catch((err) => handleInputError(err));
+        }
     };
 
-    displayMessage = () => {
-      if (!this.state.validAccount || this.state.scores == undefined) {
-        return (
-          <div className="error-message">
-            <p>Invalid username! Please enter a valid username.</p>
-          </div>
-        );
-      }
-      if (this.state.validAccount && this.state.scores < 10) {
-        return (
-          <div className="error-message">
-            <p>
-                        We're not receiving tweets for
-              {this.state.username}
-              {' '}
-at the moment.
-            </p>
-          </div>
-        );
-      }
-      return '';
+    const displayMessage = () => {
+        if (!validAccount || !scores) {
+            return (
+                <div className="error-message">
+                    <p>Invalid username! Please enter a valid username.</p>
+                </div>
+            );
+        }
+        if (validAccount && scores < 10) {
+            return (
+                <div className="error-message">
+                    <p>
+                        We&apos;re not receiving tweets for
+                        {username} at the moment.
+                    </p>
+                </div>
+            );
+        }
+
+        return "";
     };
 
-    render() {
-      const minNumberOfTweets = 10;
-      return (
+    return (
         <div className="search-graph-wrapper">
-          <div className="search-bar">
-            <Search
-              placeholder="Enter a Twitter Username"
-              enterButton="Search"
-              size="large"
-              onSearch={this.handleSearch}
-            />
-            {this.state.errors || this.state.score == undefined || this.state.scores.length < minNumberOfTweets
-              ? this.displayMessage()
-              : null}
-          </div>
-          {this.state.validAccount
-                && this.state.scores != undefined
-                && this.state.scores.length >= minNumberOfTweets ? (
-                  <Graph username={this.state.username} scores={this.state.scores} />
+            <div className="search-bar">
+                <Search
+                    placeholder="Enter a Twitter Username"
+                    enterButton="Search"
+                    size="large"
+                    onSearch={handleSearch}
+                />
+                {errors || errors === undefined || scores?.length < minNumberOfTweets ? displayMessage() : null}
+            </div>
+            {validAccount && scores !== undefined && scores.length >= minNumberOfTweets ? (
+                <Graph username={username} scores={scores} />
             ) : (
-              <Graph />
+                <Graph />
             )}
         </div>
-      );
-    }
-}
+    );
+};
 
 export default UserSearch;

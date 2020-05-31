@@ -2,10 +2,7 @@
 *.*
 !*.js
 !*.json
-!*.jsx
-!*.less
+!*.css
 !*.md
-!*.mdx
-
 # Files to be ignored by eslint
 node_modules/**/*
